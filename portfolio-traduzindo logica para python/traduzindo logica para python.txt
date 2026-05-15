@@ -1,0 +1,160 @@
+def processar_vendas():
+    total_compra = 0.0
+    itens_comprados = 0
+
+    try:
+        quantidade_tipos = int(input("Quantos produtos diferentes foram comprados? "))
+    except ValueError:
+        print("Erro: Por favor, digite um número inteiro para a quantidade de produtos.")
+        return
+
+    for i in range(1, quantidade_tipos + 1):
+        print(f"\n--- Produto {i} ---")
+        nome = input("Nome do produto: ")
+
+        try:
+            preco = float(input(f"Preço unitário de {nome}: "))
+            qtd = int(input(f"Quantidade de {nome}: "))
+        except ValueError:
+            print("Erro: Preço ou quantidade inválidos. Pulando este item.")
+            continue
+
+        if preco <= 0 or qtd <= 0:
+            print(f"Erro: Valores inválidos para {nome}. O preço e a quantidade devem ser maiores que zero.")
+        else:
+            subtotal = preco * qtd
+            total_compra += subtotal
+            itens_comprados += qtd
+
+    # Aplicação de descontos progressivos
+    if total_compra > 500.00:
+        total_final = total_compra * 0.90  # 10% de desconto
+        print("\nDesconto de 10% aplicado!")
+    elif total_compra > 200.00:
+        total_final = total_compra * 0.95  # 5% de desconto
+        print("\nDesconto de 5% aplicado!")
+    else:
+        total_final = total_compra
+        print("\nSem desconto aplicado.")
+
+
+    print("-" * 30)
+    print(f"Resumo: {itens_comprados} itens.")
+    print(f"Total a pagar: R${total_final:.2f}")
+    print("-" * 30)
+
+if _name_ == "_main_":
+    processar_vendas()
+
+def analisar_clima():
+    """
+    Coleta dados de temperatura de uma semana e gera um relatório de alertas.
+    """
+    soma_temperaturas = 0.0
+    dias_quentes = 0
+    alerta_extremo = False
+
+
+    for dia in range(1, 8):
+
+        temp = float(input(f"Digite a temperatura do dia {dia}: "))
+
+        soma_temperaturas += temp
+
+
+        if temp > 35.0:
+            dias_quentes += 1
+
+
+        if temp > 45.0 or temp < -5.0:
+            alerta_extremo = True
+
+
+    media = soma_temperaturas / 7
+
+
+    print(f"\nMédia semanal: {media:.2f}°C")
+    print(f"Dias acima de 35°C: {dias_quentes}")
+
+
+    if alerta_extremo:
+        print("CUIDADO: Condições climáticas perigosas detectadas!")
+    else:
+        print("Clima dentro da normalidade operacional.")
+
+
+analisar_clima()
+
+def sistema_notas_turma():
+
+    try:
+        total_alunos = int(input("Quantos alunos existem na turma? "))
+    except ValueError:
+        print("Por favor, digite um número inteiro válido.")
+        return
+
+
+    for j in range(1, total_alunos + 1):
+        print(f"\n--- Aluno {j} ---")
+        aluno_nome = input("Nome do aluno: ")
+
+        # Lê as notas e converte para float
+        try:
+            n1 = float(input("Nota 1: "))
+            n2 = float(input("Nota 2: "))
+        except ValueError:
+            print("Nota inválida. Por favor, use números.")
+            continue
+
+        # Calcula a média
+        media_aluno = (n1 + n2) / 2
+
+        # Lógica de decisão (Aprovado, Recuperação ou Reprovado)
+        if media_aluno >= 7.0:
+            print(f"{aluno_nome}: Aprovado com média {media_aluno:.2f}")
+        elif media_aluno >= 5.0:
+            print(f"{aluno_nome}: Recuperação (Média: {media_aluno:.2f})")
+        else:
+            print(f"{aluno_nome}: Reprovado (Média: {media_aluno:.2f})")
+
+# Chama a função
+if _name_ == "_main_":
+    sistema_notas_turma()
+
+def simulador_poupanca():
+    # Entrada de dados iniciais
+    try:
+        saldo = float(input("Valor inicial do investimento: "))
+        taxa = float(input("Taxa de juros mensal (em %): "))
+        meses = int(input("Número de meses da simulação: "))
+    except ValueError:
+        print("Erro: Por favor, insira valores numéricos válidos.")
+        return
+
+    atingiu_meta = False
+
+    # Loop para simulação mensal
+    for m in range(1, meses + 1):
+        try:
+            aporte = float(input(f"Quanto deseja depositar no mês {m}? (0 para nenhum): "))
+        except ValueError:
+            print("Valor inválido. Considerando aporte de R$0.00")
+            aporte = 0.0
+
+
+        saldo += aporte
+        juros = saldo * (taxa / 100)
+        saldo += juros
+
+        print(f"Mês {m}: Saldo atualizado = R${saldo:.2f}")
+
+
+        if saldo > 10000.0 and not atingiu_meta:
+            print(f"Parabéns! Você atingiu a meta de 10k no mês {m}")
+            atingiu_meta = True
+
+
+    print(f"\nResultado final após {meses} meses: R${saldo:.2f}")
+
+if _name_ == "_main_":
+    simulador_poupanca()
