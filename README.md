@@ -31,6 +31,5 @@ Atualmente cursando o [1º] período de [Análise e Desenvolvimento de Sistemas]
 ![Scikit-Learn](https://img.shields.io/badge/scikit--learn-%23F7931E.svg?style=for-the-badge&logo=scikit-learn&logoColor=white)
  
 ---
- 
-### 📂 Portfólio de Projetos
+
  
