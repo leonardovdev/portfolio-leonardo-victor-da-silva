@@ -1,0 +1,46 @@
+def analisar_microclima():
+    dados_locais = [
+        ["Parque urbano", 27, 75, 40],
+        ["Avenida movimentada", 35, 45, 130],
+        ["Estacionamento aberto", 32, 55, 90]
+    ]
+
+    for local in dados_locais:
+        nome = local[0]
+        temperatura = local[1]
+        umidade = local[2]
+        iqa = local[3]
+
+        if iqa <= 50:
+            qualidade = "Boa"
+        elif iqa <= 100:
+            qualidade = "Moderada"
+        elif iqa <= 150:
+            qualidade = "Ruim"
+        else:
+            qualidade = "Muito ruim"
+
+        nota = 10
+
+        if temperatura > 32 or temperatura < 18:
+            nota -= 3
+        elif temperatura > 28:
+            nota -= 1
+
+        if umidade > 80 or umidade < 30:
+            nota -= 2
+
+        if iqa > 100:
+            nota -= 3
+        elif iqa > 50:
+            nota -= 1
+
+        if nota < 0:
+            nota = 0
+
+        print(f"Local: {nome}")
+        print(f"Temperatura: {temperatura}°C | Umidade: {umidade}% | IQA: {iqa}")
+        print(f"Qualidade do Ar: {qualidade}")
+        print(f"Nota de Conforto: {nota}/10\n")
+
+analisar_microclima()
